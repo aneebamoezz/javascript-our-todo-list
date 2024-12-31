@@ -1,11 +1,10 @@
 const inputBox = document.getElementById("input-box");
-const listCon = document.getElementById("list-container");
-const addCartBtn= document.getElementById("addBtn");
+const listContainer = document.getElementById("list-container");
+const addCartBtn = document.getElementById("addBtn");
 
 addCartBtn.addEventListener("click", () => {
-    alertMsg()
-})
-
+  alertMsg();
+});
 
 function alertMsg() {
   if (inputBox.value === "") {
@@ -18,6 +17,26 @@ function alertMsg() {
 function updatItems() {
   let li = document.createElement("li");
   li.innerHTML = inputBox.value;
-  listCon.appendChild(li);
+  listContainer.appendChild(li);
   inputBox.value = "";
+  
+  let delButton = document.createElement("button")
+  delButton.innerHTML = "Delete";
+  delButton.style.cursor = "pointer"
+  li.appendChild(delButton)
+
+  delButton.addEventListener("click", () => {
+    li.remove(delButton)
+  })
+
 }
+
+listContainer.addEventListener("click", function(e){
+  if(e.target.tagName === "LI"){
+    e.target.classList.toggle("checked")
+  }else if(e.target.tagName === "DELETE"){
+    e.target.parentElement.remove()
+  }else{
+    false
+  }
+})
