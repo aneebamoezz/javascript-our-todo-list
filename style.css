@@ -1,0 +1,7 @@
+ul, li::before{
+    content: '';
+    position: absolute;
+    height: 28px;
+    width: 28px;
+    border-radius: 50%;
+}
