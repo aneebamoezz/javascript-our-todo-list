@@ -1,7 +1,64 @@
+*{
+    margin: 0;
+    padding: 0;
+}
 .container{
     width: 500px;
-    align-items: center;
+    margin: 0 auto;
 }
+
+
+.todo-box{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    gap: 15px;
+}
+
+button{
+    background-color: red;
+    border: none;
+    color: #fff;
+    padding: 8px 4px;
+    border-radius: 5px;
+    font-size: 12px;
+}
+
+.title{
+    padding: 5px;
+    background-color: rgb(67, 72, 77);
+    color: #fff;
+}
+
+h1{
+    text-align: center;
+}
+
+.cart-logo{
+    width: 200px;
+}
+
+#input-box{
+    padding: 4px;
+}
+
+#addBtn{
+    background-color: rgb(67, 72, 77);
+    border: none;
+    padding:  12px;
+    font-size: 18px;
+    border-radius: 8px;
+    color: #fff;
+    cursor: pointer;
+}
+
+#addBtn:hover{
+    background-color: rgb(235, 159, 46);
+}
+
 ul li{
     position: relative;
     list-style: none;

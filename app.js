@@ -19,24 +19,24 @@ function updatItems() {
   li.innerHTML = inputBox.value;
   listContainer.appendChild(li);
   inputBox.value = "";
-  
-  let delButton = document.createElement("button")
+
+  let delButton = document.createElement("button");
   delButton.innerHTML = "Delete";
-  delButton.style.cursor = "pointer"
-  li.appendChild(delButton)
+  delButton.style.cursor = "pointer";
+  li.appendChild(delButton);
 
   delButton.addEventListener("click", () => {
-    li.remove(delButton)
-  })
-
+    li.remove(delButton);
+  });
 }
 
-listContainer.addEventListener("click", function(e){
-  if(e.target.tagName === "LI"){
-    e.target.classList.toggle("checked")
-  }else if(e.target.tagName === "DELETE"){
-    e.target.parentElement.remove()
-  }else{
-    false
+
+listContainer.addEventListener("click", function (e) {
+  if (e.target.tagName === "LI") {
+    e.target.classList.toggle("checked");
+  } else if (e.target.tagName === "DELETE") {
+    e.target.parentElement.remove();
+  } else {
+    false;
   }
-})
+});
