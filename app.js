@@ -2,41 +2,55 @@ const inputBox = document.getElementById("input-box");
 const listContainer = document.getElementById("list-container");
 const addCartBtn = document.getElementById("addBtn");
 
-addCartBtn.addEventListener("click", () => {
-  alertMsg();
-});
+let todoItems = [];
 
-function alertMsg() {
+addCartBtn.addEventListener("click", () => {
   if (inputBox.value === "") {
     alert("please write something");
   } else {
-    updatItems();
+    todoItems.push(inputBox.value);
+    inputBox.value = "";
+    displayItems();
+    saveData();
+  }
+});
+
+function displayItems() {
+  listContainer.innerHTML = "";
+
+  for (let i = 0; i < todoItems.length; i++) {
+    let li = document.createElement("li");
+    li.innerHTML = todoItems[i];
+    listContainer.appendChild(li);
+
+    let delButton = document.createElement("button");
+    delButton.innerHTML = "Delete";
+    delButton.style.cursor = "pointer";
+    li.appendChild(delButton);
+
+    delButton.addEventListener("click", () => {
+      li.remove(delButton);
+      saveData();
+    });
   }
 }
-
-function updatItems() {
-  let li = document.createElement("li");
-  li.innerHTML = inputBox.value;
-  listContainer.appendChild(li);
-  inputBox.value = "";
-
-  let delButton = document.createElement("button");
-  delButton.innerHTML = "Delete";
-  delButton.style.cursor = "pointer";
-  li.appendChild(delButton);
-
-  delButton.addEventListener("click", () => {
-    li.remove(delButton);
-  });
-}
-
 
 listContainer.addEventListener("click", function (e) {
   if (e.target.tagName === "LI") {
     e.target.classList.toggle("checked");
-  } else if (e.target.tagName === "DELETE") {
-    e.target.parentElement.remove();
-  } else {
-    false;
   }
 });
+
+const savedTodo = localStorage.getItem("todos")
+if(savedTodo){
+  todoItems = JSON.parse(savedTodo)
+  displayItems()
+}
+
+function saveData() {
+  localStorage.setItem("todos", JSON.stringify(todoItems));
+}
+
+function deleteItem() {
+  localStorage.removeItem("todos");
+}

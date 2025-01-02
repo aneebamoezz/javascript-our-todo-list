@@ -25,6 +25,7 @@ button{
     padding: 8px 4px;
     border-radius: 5px;
     font-size: 12px;
+    cursor: pointer;
 }
 
 .title{
@@ -69,7 +70,7 @@ ul li{
 }
 
 ul li::before{
-    content: ' ';
+    content: '';
     position: absolute;
     width: 20px;
     height: 20px;
