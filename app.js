@@ -16,23 +16,28 @@ addCartBtn.addEventListener("click", () => {
 });
 
 function displayItems() {
-  listContainer.innerHTML = "";
+  listContainer.innerHTML = ""; 
 
-  for (let i = 0; i < todoItems.length; i++) {
+  todoItems.forEach((item, index) => {
     let li = document.createElement("li");
-    li.innerHTML = todoItems[i];
+    li.textContent = item;
     listContainer.appendChild(li);
 
     let delButton = document.createElement("button");
-    delButton.innerHTML = "Delete";
+    delButton.textContent = "Delete";
     delButton.style.cursor = "pointer";
     li.appendChild(delButton);
 
     delButton.addEventListener("click", () => {
-      li.remove(delButton);
-      saveData();
+      removeItem(index);
     });
-  }
+  });
+}
+
+function removeItem(index) {
+  todoItems.splice(index, 1);
+  saveData(); 
+  displayItems();
 }
 
 listContainer.addEventListener("click", function (e) {
@@ -41,7 +46,7 @@ listContainer.addEventListener("click", function (e) {
   }
 });
 
-const savedTodo = localStorage.getItem("todos")
+const savedTodo = localStorage.getItem("todos") 
 if(savedTodo){
   todoItems = JSON.parse(savedTodo)
   displayItems()
@@ -49,8 +54,4 @@ if(savedTodo){
 
 function saveData() {
   localStorage.setItem("todos", JSON.stringify(todoItems));
-}
-
-function deleteItem() {
-  localStorage.removeItem("todos");
 }
